@@ -17,7 +17,7 @@ public final class Day1 {
     }
 
     public static Integer solution(String file, Integer num) {
-        InputStream inputStream = Day1.class.getResourceAsStream(file);
+        InputStream inputStream = Day2.class.getResourceAsStream(file);
         assert inputStream != null;
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 

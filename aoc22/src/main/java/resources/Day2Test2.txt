@@ -1,0 +1,9 @@
+R W
+R D
+R L
+P W
+P D
+P L
+S W
+S D
+S L

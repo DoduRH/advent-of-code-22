@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -44,27 +45,28 @@ public final class Day5 {
         String initialStackString = parts[0];
         String moves = parts[1];
         
-        List<ArrayList<String>> stacks;
+        List<ArrayList<String>> stacks = new ArrayList<>();
 
-        // Lazy parsing
-        if (file.contains("Test")) {
-            stacks = List.of(
-                new ArrayList<>(Arrays.asList("Z","N")),
-                new ArrayList<>(Arrays.asList("M", "C", "D")),
-                new ArrayList<>(Arrays.asList("P"))
-            );
-        } else {
-            stacks = List.of(
-                new ArrayList<>(Arrays.asList("S","C","V","N")),
-                new ArrayList<>(Arrays.asList("Z","M","J","H","N","S")),
-                new ArrayList<>(Arrays.asList("M","C","T","G","J","N","D")),
-                new ArrayList<>(Arrays.asList("T","D","F","J","W","R","M")),
-                new ArrayList<>(Arrays.asList("P","F","H")),
-                new ArrayList<>(Arrays.asList("C","T","Z","H","J")),
-                new ArrayList<>(Arrays.asList("D","P","R","Q","F","S","L","Z")),
-                new ArrayList<>(Arrays.asList("C","S","L","H","D","F","P","W")),
-                new ArrayList<>(Arrays.asList("D","S","M","P","F","N","G","Z"))
-            );
+        // Proper parsing
+        ArrayList<String> stackRows = new ArrayList<String>(List.of(initialStackString.split("\n")));
+        Collections.reverse(stackRows);
+        boolean ignore = true;
+
+        for (String row : stackRows) {
+            if (ignore) {
+                ignore = false;
+                // Init stacks
+                for (int i=0; i<=row.replace(" ", "").length() - 1; i++) {
+                    stacks.add(new ArrayList<>());
+                };
+            } else {
+                for (int i=1; i < row.length(); i += 4) {
+                    String c = String.valueOf(row.charAt(i));
+                    if (!"".equals(c.strip())) {
+                        stacks.get((i-1)/4).add(c);
+                    }
+                }
+            };
         }
 
         for (String moveLine : moves.split("\n")) {
@@ -119,26 +121,28 @@ public final class Day5 {
         String initialStackString = parts[0];
         String moves = parts[1];
         
-        List<ArrayList<String>> stacks;
+        List<ArrayList<String>> stacks = new ArrayList<>();
 
-        if (file.contains("Test")) {
-            stacks = List.of(
-                new ArrayList<>(Arrays.asList("Z","N")),
-                new ArrayList<>(Arrays.asList("M", "C", "D")),
-                new ArrayList<>(Arrays.asList("P"))
-            );
-        } else {
-            stacks = List.of(
-                new ArrayList<>(Arrays.asList("S","C","V","N")),
-                new ArrayList<>(Arrays.asList("Z","M","J","H","N","S")),
-                new ArrayList<>(Arrays.asList("M","C","T","G","J","N","D")),
-                new ArrayList<>(Arrays.asList("T","D","F","J","W","R","M")),
-                new ArrayList<>(Arrays.asList("P","F","H")),
-                new ArrayList<>(Arrays.asList("C","T","Z","H","J")),
-                new ArrayList<>(Arrays.asList("D","P","R","Q","F","S","L","Z")),
-                new ArrayList<>(Arrays.asList("C","S","L","H","D","F","P","W")),
-                new ArrayList<>(Arrays.asList("D","S","M","P","F","N","G","Z"))
-            );
+        // Proper parsing
+        ArrayList<String> stackRows = new ArrayList<String>(List.of(initialStackString.split("\n")));
+        Collections.reverse(stackRows);
+        boolean ignore = true;
+
+        for (String row : stackRows) {
+            if (ignore) {
+                ignore = false;
+                // Init stacks
+                for (int i=0; i<=row.replace(" ", "").length() - 1; i++) {
+                    stacks.add(new ArrayList<>());
+                };
+            } else {
+                for (int i=1; i < row.length(); i += 4) {
+                    String c = String.valueOf(row.charAt(i));
+                    if (!"".equals(c.strip())) {
+                        stacks.get((i-1)/4).add(c);
+                    }
+                }
+            };
         }
 
         for (String moveLine : moves.split("\n")) {

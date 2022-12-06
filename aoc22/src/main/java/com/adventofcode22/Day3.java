@@ -1,11 +1,9 @@
 package com.adventofcode22;
 
 import java.io.BufferedReader;
-import java.io.IOError;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 

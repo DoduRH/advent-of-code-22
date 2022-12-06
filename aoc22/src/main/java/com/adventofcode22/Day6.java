@@ -4,12 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -40,10 +35,14 @@ public final class Day6 {
         }
 
         for (int i = 3; i < fileContents.length(); i++) {
-            Set<Character> current = fileContents.chars().skip(i).limit(limit).mapToObj(e->(char)e).collect(Collectors.toSet());
-            
+            Set<Character> current = fileContents.chars()
+                    .skip(i)
+                    .limit(limit)
+                    .mapToObj(e -> (char) e)
+                    .collect(Collectors.toSet());
+
             if (current.size() == limit) {
-                return i+limit;
+                return i + limit;
             }
         }
         return 0;

@@ -1,8 +1,8 @@
 file = "aoc22/src/main/java/resources/Day7Input.txt"
-# file = "aoc22/src/main/java/resources/Day7Test.txt"
+file = "aoc22/src/main/java/resources/Day7Test.txt"
 
 from enum import Enum
-from pprint import pprint
+import json
 
 with open(file) as f:
     lines = f.readlines()
@@ -55,13 +55,15 @@ for line in lines:
         else:
             getFolder(cwd)[name] = int(size)
 
-print(pprint(folderStructure, indent=4))
+print(json.dumps(folderStructure, indent=4))
 
 # Find the sum of all folders <=100000
 
 pt1Total = 0
+count = 0
+lessThan100_000 = []
+
 def getSize(folder):
-    global pt1Total
     folderSize = 0
     
     for key, val in folder.items():
@@ -71,14 +73,19 @@ def getSize(folder):
             folderSize += val
     
     if folderSize <= 100_000:
+        global pt1Total, count
         pt1Total += folderSize
+        count += 1
+        lessThan100_000.append(folderSize)
     
     return folderSize
 
+
 totalSize = getSize(folderStructure)
 
+print(sorted(lessThan100_000))
 print(f"{pt1Total = :,}")
-
+print(f"{count = }")
 print(f"{totalSize = :,}")
 
 required = 30_000_000 - (70_000_000-totalSize)

@@ -16,7 +16,7 @@ public class ADayTemplate {
     }
 
     public static Integer solution(String file) {
-        InputStream inputStream = Day2.class.getResourceAsStream(file);
+        InputStream inputStream = ADayTemplate.class.getResourceAsStream(file);
         assert inputStream != null;
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 

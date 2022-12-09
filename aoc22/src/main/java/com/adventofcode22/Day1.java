@@ -23,7 +23,6 @@ public final class Day1 {
 
         List<Integer> elves = new java.util.ArrayList<>(Collections.emptyList());
 
-        Integer maxCapacity = 0;
         Integer currentCap = 0;
         String line;
 
@@ -31,9 +30,6 @@ public final class Day1 {
             while ((line = reader.readLine()) != null) {
                 if (line.equals("")) {
                     elves.add(currentCap);
-                    if (maxCapacity < currentCap) {
-                        maxCapacity = currentCap;
-                    }
                     currentCap = 0;
                 } else {
                     currentCap += Integer.valueOf(line);
@@ -48,6 +44,8 @@ public final class Day1 {
         return elves.stream()
                 .sorted(Comparator.reverseOrder())
                 .limit(num)
-                .reduce(0, Integer::sum);
+                .mapToInt(i -> i)
+                .sum();
+                // .reduce(0, Integer::sum);
     }
 }

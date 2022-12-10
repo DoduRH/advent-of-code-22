@@ -49,12 +49,12 @@ i=0
 
 while (reg := calcToCycle(i+1)) is not None:
     if abs(i%40 - reg) <= 1:
-        print("#", end="")
+        print("█", end="")
     else:
         print(" ", end="")
     i += 1
     if i%40 == 0:
-        print("|")
+        print("")
 
 print(f"\nRun for {i} cycles")
     
